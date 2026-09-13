@@ -1,0 +1,265 @@
+<?xml version="1.0" ?>
+<robot name="dump_truck" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:property name="scale_factor" value="6.0"/>
+<xacro:property name="s1" value="${scale_factor}"/>
+<xacro:property name="s3" value="${scale_factor * scale_factor * scale_factor}"/>
+<xacro:property name="s5" value="${scale_factor * scale_factor * scale_factor * scale_factor * scale_factor}"/>
+<xacro:property name="m_scale" value="${0.001 * scale_factor}"/>
+
+<xacro:include filename="$(find dump_truck_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find dump_truck_description)/urdf/dump_truck.ros2control" />
+<xacro:include filename="$(find dump_truck_description)/urdf/dump_truck.gazebo" />
+
+<link name="base_footprint"/>
+
+<joint name="base_joint" type="fixed">
+  <parent link="base_footprint"/>
+  <child link="base_link"/>
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+</joint>
+
+<link name="base_link">
+  <inertial>
+    <origin xyz="${-0.037216870542629524 * s1} ${0.923650063509177 * s1} ${0.6089941137475473 * s1}" rpy="0 0 0"/>
+    <mass value="${3682.561304973613 * s3}"/>
+    <inertia ixx="${270.862434 * s5}" iyy="${2272.68259 * s5}" izz="${2297.240174 * s5}" ixy="${-17.023489 * s5}" iyz="${-1.422168 * s5}" ixz="${-160.660818 * s5}"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find dump_truck_description)/meshes/base_link.stl" scale="${m_scale} ${m_scale} ${m_scale}"/>
+    </geometry>
+    <material name="yellow"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find dump_truck_description)/meshes/base_link.stl" scale="${m_scale} ${m_scale} ${m_scale}"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="camera_1">
+  <inertial>
+    <origin xyz="${0.02005126476127672 * s1} ${0.00017213478379707325 * s1} ${0.0003003465910116909 * s1}" rpy="0 0 0"/>
+    <mass value="${1.1580630469448432 * s3}"/>
+    <inertia ixx="${0.000623 * s5}" iyy="${0.000489 * s5}" izz="${0.000489 * s5}" ixy="${1e-06 * s5}" iyz="0.0" ixz="${2e-06 * s5}"/>
+  </inertial>
+  <visual>
+    <origin xyz="${-0.873841 * s1} ${-0.931693 * s1} ${-0.485279 * s1}" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find dump_truck_description)/meshes/camera_1.stl" scale="${m_scale} ${m_scale} ${m_scale}"/>
+    </geometry>
+    <material name="black"/>
+  </visual>
+  <collision>
+    <origin xyz="${-0.873841 * s1} ${-0.931693 * s1} ${-0.485279 * s1}" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find dump_truck_description)/meshes/camera_1.stl" scale="${m_scale} ${m_scale} ${m_scale}"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lidar_1">
+  <inertial>
+    <origin xyz="${-0.0003624172352394983 * s1} ${-3.920104766896859e-05 * s1} ${0.02423043463481611 * s1}" rpy="0 0 0"/>
+    <mass value="${1.6315042031764755 * s3}"/>
+    <inertia ixx="${0.000867 * s5}" iyy="${0.000867 * s5}" izz="${0.001088 * s5}" ixy="0.0" iyz="-0.0" ixz="${-3e-06 * s5}"/>
+  </inertial>
+  <visual>
+    <origin xyz="${0.068968 * s1} ${-0.922284 * s1} ${-1.336248 * s1}" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find dump_truck_description)/meshes/lidar_1.stl" scale="${m_scale} ${m_scale} ${m_scale}"/>
+    </geometry>
+    <material name="red"/>
+  </visual>
+  <collision>
+    <origin xyz="${0.068968 * s1} ${-0.922284 * s1} ${-1.336248 * s1}" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find dump_truck_description)/meshes/lidar_1.stl" scale="${m_scale} ${m_scale} ${m_scale}"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="tyre_2">
+  <inertial>
+    <origin xyz="${-0.0012750992862658461 * s1} ${0.14789695829908256 * s1} ${0.00022227831942106535 * s1}" rpy="0 0 0"/>
+    <mass value="${359.7412690363687 * s3}"/>
+    <inertia ixx="${8.219518 * s5}" iyy="${14.057652 * s5}" izz="${8.219096 * s5}" ixy="${-0.050352 * s5}" iyz="${0.008766 * s5}" ixz="${-7.7e-05 * s5}"/>
+  </inertial>
+  <visual>
+    <origin xyz="${0.127216 * s1} ${-1.193205 * s1} ${-0.395711 * s1}" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find dump_truck_description)/meshes/tyre_2.stl" scale="${m_scale} ${m_scale} ${m_scale}"/>
+    </geometry>
+    <material name="black"/>
+  </visual>
+  <collision>
+    <origin xyz="${0.127216 * s1} ${-1.193205 * s1} ${-0.395711 * s1}" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find dump_truck_description)/meshes/tyre_2.stl" scale="${m_scale} ${m_scale} ${m_scale}"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="tyre_5">
+  <inertial>
+    <origin xyz="${0.0012755085230084229 * s1} ${-0.1478972497552904 * s1} ${-0.00022156795798849993 * s1}" rpy="0 0 0"/>
+    <mass value="${359.7412690363687 * s3}"/>
+    <inertia ixx="${8.219518 * s5}" iyy="${14.057652 * s5}" izz="${8.219096 * s5}" ixy="${-0.05035 * s5}" iyz="${0.008766 * s5}" ixz="${-7.5e-05 * s5}"/>
+  </inertial>
+  <visual>
+    <origin xyz="${0.122559 * s1} ${-0.653225 * s1} ${-0.3949 * s1}" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find dump_truck_description)/meshes/tyre_5.stl" scale="${m_scale} ${m_scale} ${m_scale}"/>
+    </geometry>
+    <material name="black"/>
+  </visual>
+  <collision>
+    <origin xyz="${0.122559 * s1} ${-0.653225 * s1} ${-0.3949 * s1}" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find dump_truck_description)/meshes/tyre_5.stl" scale="${m_scale} ${m_scale} ${m_scale}"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="tyre_1">
+  <inertial>
+    <origin xyz="${-0.0012752135814764198 * s1} ${0.14789783155963732 * s1} ${0.00022248066668784094 * s1}" rpy="0 0 0"/>
+    <mass value="${359.7412690363687 * s3}"/>
+    <inertia ixx="${8.219518 * s5}" iyy="${14.057652 * s5}" izz="${8.219096 * s5}" ixy="${-0.050352 * s5}" iyz="${0.008766 * s5}" ixz="${-7.7e-05 * s5}"/>
+  </inertial>
+  <visual>
+    <origin xyz="${1.547004 * s1} ${-1.180992 * s1} ${-0.374437 * s1}" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find dump_truck_description)/meshes/tyre_1.stl" scale="${m_scale} ${m_scale} ${m_scale}"/>
+    </geometry>
+    <material name="black"/>
+  </visual>
+  <collision>
+    <origin xyz="${1.547004 * s1} ${-1.180992 * s1} ${-0.374437 * s1}" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find dump_truck_description)/meshes/tyre_1.stl" scale="${m_scale} ${m_scale} ${m_scale}"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="tyre_4">
+  <inertial>
+    <origin xyz="${0.001275394227803206 * s1} ${-0.1478973764947354 * s1} ${-0.00022236561072314087 * s1}" rpy="0 0 0"/>
+    <mass value="${359.7412690363687 * s3}"/>
+    <inertia ixx="${8.219518 * s5}" iyy="${14.057652 * s5}" izz="${8.219096 * s5}" ixy="${-0.05035 * s5}" iyz="${0.008766 * s5}" ixz="${-7.5e-05 * s5}"/>
+  </inertial>
+  <visual>
+    <origin xyz="${1.542347 * s1} ${-0.641013 * s1} ${-0.373627 * s1}" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find dump_truck_description)/meshes/tyre_4.stl" scale="${m_scale} ${m_scale} ${m_scale}"/>
+    </geometry>
+    <material name="black"/>
+  </visual>
+  <collision>
+    <origin xyz="${1.542347 * s1} ${-0.641013 * s1} ${-0.373627 * s1}" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find dump_truck_description)/meshes/tyre_4.stl" scale="${m_scale} ${m_scale} ${m_scale}"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="tyre_3">
+  <inertial>
+    <origin xyz="${-0.0012756844104315768 * s1} ${0.14789777800775838 * s1} ${0.00022155208102447865 * s1}" rpy="0 0 0"/>
+    <mass value="${359.7412690363687 * s3}"/>
+    <inertia ixx="${8.219518 * s5}" iyy="${14.057652 * s5}" izz="${8.219096 * s5}" ixy="${-0.050352 * s5}" iyz="${0.008766 * s5}" ixz="${-7.7e-05 * s5}"/>
+  </inertial>
+  <visual>
+    <origin xyz="${2.146914 * s1} ${-1.175832 * s1} ${-0.365449 * s1}" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find dump_truck_description)/meshes/tyre_3.stl" scale="${m_scale} ${m_scale} ${m_scale}"/>
+    </geometry>
+    <material name="black"/>
+  </visual>
+  <collision>
+    <origin xyz="${2.146914 * s1} ${-1.175832 * s1} ${-0.365449 * s1}" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find dump_truck_description)/meshes/tyre_3.stl" scale="${m_scale} ${m_scale} ${m_scale}"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="tyre_6">
+  <inertial>
+    <origin xyz="${0.001275923398844192 * s1} ${-0.14789743004661327 * s1} ${-0.00022229419638614134 * s1}" rpy="0 0 0"/>
+    <mass value="${359.7412690363687 * s3}"/>
+    <inertia ixx="${8.219518 * s5}" iyy="${14.057652 * s5}" izz="${8.219096 * s5}" ixy="${-0.05035 * s5}" iyz="${0.008766 * s5}" ixz="${-7.5e-05 * s5}"/>
+  </inertial>
+  <visual>
+    <origin xyz="${2.142258 * s1} ${-0.635853 * s1} ${-0.364638 * s1}" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find dump_truck_description)/meshes/tyre_6.stl" scale="${m_scale} ${m_scale} ${m_scale}"/>
+    </geometry>
+    <material name="black"/>
+  </visual>
+  <collision>
+    <origin xyz="${2.142258 * s1} ${-0.635853 * s1} ${-0.364638 * s1}" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find dump_truck_description)/meshes/tyre_6.stl" scale="${m_scale} ${m_scale} ${m_scale}"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="cam" type="fixed">
+  <origin xyz="${0.873841 * s1} ${0.931693 * s1} ${0.485279 * s1}" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="camera_1"/>
+</joint>
+
+<joint name="lidar" type="fixed">
+  <origin xyz="${-0.068968 * s1} ${0.922284 * s1} ${1.336248 * s1}" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lidar_1"/>
+</joint>
+
+<joint name="l1" type="continuous">
+  <origin xyz="${-0.127216 * s1} ${1.193205 * s1} ${0.395711 * s1}" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="tyre_2"/>
+  <axis xyz="-0.008624 0.999962 0.001501"/>
+</joint>
+
+<joint name="r1" type="continuous">
+  <origin xyz="${-0.122559 * s1} ${0.653225 * s1} ${0.3949 * s1}" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="tyre_5"/>
+  <axis xyz="-0.008624 0.999962 0.001501"/>
+</joint>
+
+<joint name="l2" type="continuous">
+  <origin xyz="${-1.547004 * s1} ${1.180992 * s1} ${0.374437 * s1}" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="tyre_1"/>
+  <axis xyz="-0.008624 0.999962 0.001501"/>
+</joint>
+
+<joint name="r2" type="continuous">
+  <origin xyz="${-1.542347 * s1} ${0.641013 * s1} ${0.373627 * s1}" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="tyre_4"/>
+  <axis xyz="-0.008624 0.999962 0.001501"/>
+</joint>
+
+<joint name="l3" type="continuous">
+  <origin xyz="${-2.146914 * s1} ${1.175832 * s1} ${0.365449 * s1}" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="tyre_3"/>
+  <axis xyz="-0.008624 0.999962 0.001501"/>
+</joint>
+
+<joint name="r3" type="continuous">
+  <origin xyz="${-2.142258 * s1} ${0.635853 * s1} ${0.364638 * s1}" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="tyre_6"/>
+  <axis xyz="-0.008624 0.999962 0.001501"/>
+</joint>
+
+</robot>

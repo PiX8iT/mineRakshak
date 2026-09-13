@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <model name="ore_stockpile">
+    <static>true</static>
+    <link name="pile">
+      <collision name="c0">
+        <pose>0 0 0.6 0 0 0</pose>
+        <geometry><cylinder><radius>4.0</radius><length>1.2</length></cylinder></geometry>
+      </collision>
+      <visual name="v0">
+        <pose>0 0 0.6 0 0 0</pose>
+        <geometry><cylinder><radius>4.0</radius><length>1.2</length></cylinder></geometry>
+        <material><ambient>0.42 0.19 0.1 1</ambient><diffuse>0.5 0.23 0.12 1</diffuse></material>
+      </visual>
+
+      <collision name="c1">
+        <pose>0 0 1.7 0 0 0</pose>
+        <geometry><cylinder><radius>2.9</radius><length>1.0</length></cylinder></geometry>
+      </collision>
+      <visual name="v1">
+        <pose>0 0 1.7 0 0 0</pose>
+        <geometry><cylinder><radius>2.9</radius><length>1.0</length></cylinder></geometry>
+        <material><ambient>0.45 0.21 0.11 1</ambient><diffuse>0.53 0.25 0.13 1</diffuse></material>
+      </visual>
+
+      <collision name="c2">
+        <pose>0 0 2.6 0 0 0</pose>
+        <geometry><cylinder><radius>1.8</radius><length>0.8</length></cylinder></geometry>
+      </collision>
+      <visual name="v2">
+        <pose>0 0 2.6 0 0 0</pose>
+        <geometry><cylinder><radius>1.8</radius><length>0.8</length></cylinder></geometry>
+        <material><ambient>0.48 0.23 0.12 1</ambient><diffuse>0.56 0.27 0.14 1</diffuse></material>
+      </visual>
+
+      <collision name="c3">
+        <pose>0 0 3.3 0 0 0</pose>
+        <geometry><cylinder><radius>0.7</radius><length>0.6</length></cylinder></geometry>
+      </collision>
+      <visual name="v3">
+        <pose>0 0 3.3 0 0 0</pose>
+        <geometry><cylinder><radius>0.7</radius><length>0.6</length></cylinder></geometry>
+        <material><ambient>0.5 0.25 0.13 1</ambient><diffuse>0.58 0.29 0.15 1</diffuse></material>
+      </visual>
+    </link>
+  </model>
+</sdf>

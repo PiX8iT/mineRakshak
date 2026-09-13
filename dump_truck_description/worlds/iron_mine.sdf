@@ -1,0 +1,618 @@
+<?xml version="1.0"?>
+<sdf version="1.9">
+  <world name="iron_mine">
+
+    <physics name="default_physics" type="ode">
+      <max_step_size>0.004</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>250</real_time_update_rate>
+    </physics>
+
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin filename="gz-sim-contact-system" name="gz::sim::systems::Contact"/>
+
+    <!-- <gui fullscreen="0">
+      <plugin filename="MinimalScene" name="3D View">
+        <gz-gui>
+          <title>3D View</title>
+          <property type="bool" key="showTitleBar">false</property>
+          <property type="string" key="state">docked</property>
+        </gz-gui>
+        <engine>ogre2</engine>
+        <scene>scene</scene>
+        <ambient_light>0.5 0.5 0.5</ambient_light>
+        <background_color>0.7 0.7 0.7</background_color>
+      </plugin>
+      <plugin filename="GzSceneManager" name="Scene Manager">
+        <gz-gui>
+          <property key="resizable" type="bool">false</property>
+          <property key="width" type="double">5</property>
+          <property key="height" type="double">5</property>
+          <property key="state" type="string">floating</property>
+          <property key="showTitleBar" type="bool">false</property>
+        </gz-gui>
+      </plugin>
+    </gui> -->
+
+<scene>
+      <ambient>0.4 0.4 0.4 1.0</ambient>
+      <background>0.7 0.7 0.7 1.0</background>
+      <shadows>false</shadows>
+      <grid>false</grid>
+
+      <fog>
+        <color>0.75 0.75 0.75 1.0</color>
+        <type>exp2</type>
+        <density>0.08</density>
+      </fog>
+    </scene>
+
+    <light type="directional" name="sun">
+      <pose>0 0 100 0 0 0</pose>
+      <cast_shadows>true</cast_shadows>
+      <!-- Lower intensity diffuse prevents burning through fog shaders -->
+      <diffuse>0.5 0.5 0.5 1.0</diffuse>
+      <specular>0.1 0.1 0.1 1.0</specular>
+      <direction>-0.4 0.3 -0.8</direction>
+    </light>
+
+    <!-- ========================================================= -->
+    <!-- TERRACED PIT (hollow ring benches, south-side ramp cut)     -->
+    <!-- ========================================================= -->
+
+    <model name="upper_bench_N">
+      <static>true</static>
+      <pose>0 100.0 -4.0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>220 20.0 8</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>220 20.0 8</size></box></geometry>
+          <material>
+            <ambient>0.30 0.24 0.18 1</ambient>
+            <diffuse>0.38 0.32 0.24 1</diffuse>
+          </material>
+          <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+            <temperature>310.0</temperature>
+          </plugin>
+        </visual>
+      </link>
+    </model>
+
+    <model name="upper_bench_E">
+      <static>true</static>
+      <pose>100.0 0 -4.0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>20.0 180 8</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>20.0 180 8</size></box></geometry>
+          <material>
+            <ambient>0.30 0.24 0.18 1</ambient>
+            <diffuse>0.38 0.32 0.24 1</diffuse>
+          </material>
+          <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+          <temperature>310.0</temperature>
+          </plugin>
+        </visual>
+      </link>
+    </model>
+
+    <model name="upper_bench_W">
+      <static>true</static>
+      <pose>-100.0 0 -4.0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>20.0 180 8</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>20.0 180 8</size></box></geometry>
+          <material>
+            <ambient>0.30 0.24 0.18 1</ambient>
+            <diffuse>0.38 0.32 0.24 1</diffuse>
+          </material>
+              <temperature>310.0</temperature>
+        </visual>
+      </link>
+    </model>
+
+    <model name="upper_bench_S_a">
+      <static>true</static>
+      <pose>-62.5 -100.0 -4.0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>95.0 20.0 8</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>95.0 20.0 8</size></box></geometry>
+          <material>
+            <ambient>0.30 0.24 0.18 1</ambient>
+            <diffuse>0.38 0.32 0.24 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="upper_bench_S_b">
+      <static>true</static>
+      <pose>62.5 -100.0 -4.0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>95.0 20.0 8</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>95.0 20.0 8</size></box></geometry>
+          <material>
+            <ambient>0.30 0.24 0.18 1</ambient>
+            <diffuse>0.38 0.32 0.24 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="upper_bench_ramp">
+      <static>true</static>
+      <pose>0 -100.0 -4.0 -0.3805063771123649 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>30.0 22.0 1.5</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>30.0 22.0 1.5</size></box></geometry>
+          <material>
+            <ambient>0.42 0.38 0.34 1</ambient>
+            <diffuse>0.50 0.46 0.40 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- upper_bench: shelf top at z=0, drives south into ramp down to z=-8 -->
+
+    <model name="mine_bench_1_N">
+      <static>true</static>
+      <pose>0 80.0 -12.0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>180 20.0 8</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>180 20.0 8</size></box></geometry>
+          <material>
+            <ambient>0.28 0.22 0.17 1</ambient>
+            <diffuse>0.36 0.30 0.23 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="mine_bench_1_E">
+      <static>true</static>
+      <pose>80.0 0 -12.0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>20.0 140 8</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>20.0 140 8</size></box></geometry>
+          <material>
+            <ambient>0.28 0.22 0.17 1</ambient>
+            <diffuse>0.36 0.30 0.23 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="mine_bench_1_W">
+      <static>true</static>
+      <pose>-80.0 0 -12.0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>20.0 140 8</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>20.0 140 8</size></box></geometry>
+          <material>
+            <ambient>0.28 0.22 0.17 1</ambient>
+            <diffuse>0.36 0.30 0.23 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="mine_bench_1_S_a">
+      <static>true</static>
+      <pose>-52.5 -80.0 -12.0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>75.0 20.0 8</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>75.0 20.0 8</size></box></geometry>
+          <material>
+            <ambient>0.28 0.22 0.17 1</ambient>
+            <diffuse>0.36 0.30 0.23 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="mine_bench_1_S_b">
+      <static>true</static>
+      <pose>52.5 -80.0 -12.0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>75.0 20.0 8</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>75.0 20.0 8</size></box></geometry>
+          <material>
+            <ambient>0.28 0.22 0.17 1</ambient>
+            <diffuse>0.36 0.30 0.23 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="mine_bench_1_ramp">
+      <static>true</static>
+      <pose>0 -80.0 -12.0 -0.3805063771123649 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>30.0 22.0 1.5</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>30.0 22.0 1.5</size></box></geometry>
+          <material>
+            <ambient>0.42 0.38 0.34 1</ambient>
+            <diffuse>0.50 0.46 0.40 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- mine_bench_1: shelf top at z=-8, drives south into ramp down to z=-16 -->
+
+    <model name="mine_bench_2_N">
+      <static>true</static>
+      <pose>0 60.0 -20.0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>140 20.0 8</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>140 20.0 8</size></box></geometry>
+          <material>
+            <ambient>0.26 0.21 0.16 1</ambient>
+            <diffuse>0.34 0.29 0.22 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="mine_bench_2_E">
+      <static>true</static>
+      <pose>60.0 0 -20.0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>20.0 100 8</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>20.0 100 8</size></box></geometry>
+          <material>
+            <ambient>0.26 0.21 0.16 1</ambient>
+            <diffuse>0.34 0.29 0.22 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="mine_bench_2_W">
+      <static>true</static>
+      <pose>-60.0 0 -20.0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>20.0 100 8</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>20.0 100 8</size></box></geometry>
+          <material>
+            <ambient>0.26 0.21 0.16 1</ambient>
+            <diffuse>0.34 0.29 0.22 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="mine_bench_2_S_a">
+      <static>true</static>
+      <pose>-42.5 -60.0 -20.0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>55.0 20.0 8</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>55.0 20.0 8</size></box></geometry>
+          <material>
+            <ambient>0.26 0.21 0.16 1</ambient>
+            <diffuse>0.34 0.29 0.22 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="mine_bench_2_S_b">
+      <static>true</static>
+      <pose>42.5 -60.0 -20.0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>55.0 20.0 8</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>55.0 20.0 8</size></box></geometry>
+          <material>
+            <ambient>0.26 0.21 0.16 1</ambient>
+            <diffuse>0.34 0.29 0.22 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="mine_bench_2_ramp">
+      <static>true</static>
+      <pose>0 -60.0 -20.0 -0.3805063771123649 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>30.0 22.0 1.5</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>30.0 22.0 1.5</size></box></geometry>
+          <material>
+            <ambient>0.42 0.38 0.34 1</ambient>
+            <diffuse>0.50 0.46 0.40 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- mine_bench_2: shelf top at z=-16, drives south into ramp down to z=-24 -->
+
+    <model name="mine_bench_3_N">
+      <static>true</static>
+      <pose>0 40.0 -28.0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>100 20.0 8</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>100 20.0 8</size></box></geometry>
+          <material>
+            <ambient>0.24 0.19 0.14 1</ambient>
+            <diffuse>0.32 0.27 0.20 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="mine_bench_3_E">
+      <static>true</static>
+      <pose>40.0 0 -28.0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>20.0 60 8</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>20.0 60 8</size></box></geometry>
+          <material>
+            <ambient>0.24 0.19 0.14 1</ambient>
+            <diffuse>0.32 0.27 0.20 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="mine_bench_3_W">
+      <static>true</static>
+      <pose>-40.0 0 -28.0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>20.0 60 8</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>20.0 60 8</size></box></geometry>
+          <material>
+            <ambient>0.24 0.19 0.14 1</ambient>
+            <diffuse>0.32 0.27 0.20 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="mine_bench_3_S_a">
+      <static>true</static>
+      <pose>-32.5 -40.0 -28.0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>35.0 20.0 8</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>35.0 20.0 8</size></box></geometry>
+          <material>
+            <ambient>0.24 0.19 0.14 1</ambient>
+            <diffuse>0.32 0.27 0.20 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="mine_bench_3_S_b">
+      <static>true</static>
+      <pose>32.5 -40.0 -28.0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>35.0 20.0 8</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>35.0 20.0 8</size></box></geometry>
+          <material>
+            <ambient>0.24 0.19 0.14 1</ambient>
+            <diffuse>0.32 0.27 0.20 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="mine_bench_3_ramp">
+      <static>true</static>
+      <pose>0 -40.0 -28.0 -0.3805063771123649 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>30.0 22.0 1.5</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>30.0 22.0 1.5</size></box></geometry>
+          <material>
+            <ambient>0.42 0.38 0.34 1</ambient>
+            <diffuse>0.50 0.46 0.40 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- mine_bench_3: shelf top at z=-24, drives south into ramp down to z=-32 -->
+
+    <!-- ========================================================= -->
+    <!-- PIT FLOOR (solid, fills the innermost hole)                -->
+    <!-- ========================================================= -->
+    <model name="mine_floor">
+      <static>true</static>
+      <pose>0 0 -33 0 0 0</pose>
+      <link name="floor_link">
+        <collision name="collision">
+          <geometry><box><size>60 60 2</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>60 60 2</size></box></geometry>
+          <material>
+            <ambient>0.20 0.16 0.12 1</ambient>
+            <diffuse>0.28 0.22 0.17 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ========================================================= -->
+    <!-- HAUL ROADS (on the mine_bench_2 shelf, z=-16)              -->
+    <!-- ========================================================= -->
+    <include>
+      <uri>model://asphalt_plane</uri>
+      <name>haul_road_1</name>
+      <pose>55 0 -16 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://asphalt_plane</uri>
+      <name>haul_road_2</name>
+      <pose>-55 0 -16 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://asphalt_plane</uri>
+      <name>haul_road_3</name>
+      <pose>0 55 -16 0 0 1.5708</pose>
+    </include>
+
+    <!-- BOULDERS: z = shelf_elevation + radius, so they rest ON the shelf -->
+
+    <model name="boulder_1">
+      <static>true</static>
+      <pose>75 30 -6.8 0.2 0.1 0.4</pose>
+      <link name="link">
+        <collision name="collision"><geometry><sphere><radius>1.2</radius></sphere></geometry></collision>
+        <visual name="visual">
+          <geometry><sphere><radius>1.2</radius></sphere></geometry>
+          <material><ambient>0.30 0.28 0.25 1</ambient><diffuse>0.40 0.38 0.35 1</diffuse></material>
+          <temperature>310.0</temperature>
+        </visual>
+      </link>
+    </model>
+
+    <model name="boulder_2">
+      <static>true</static>
+      <pose>-40 60 -14.5 0 0.3 1.0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><sphere><radius>1.5</radius></sphere></geometry></collision>
+        <visual name="visual">
+          <geometry><sphere><radius>1.5</radius></sphere></geometry>
+          <material><ambient>0.30 0.28 0.25 1</ambient><diffuse>0.40 0.38 0.35 1</diffuse></material>
+            <temperature>310.0</temperature>
+        </visual>
+      </link>
+    </model>
+
+    <model name="boulder_3">
+      <static>true</static>
+      <pose>40 -50 -15.1 0.1 0 2.1</pose>
+      <link name="link">
+        <collision name="collision"><geometry><sphere><radius>0.9</radius></sphere></geometry></collision>
+        <visual name="visual">
+          <geometry><sphere><radius>0.9</radius></sphere></geometry>
+          <material><ambient>0.30 0.28 0.25 1</ambient><diffuse>0.40 0.38 0.35 1</diffuse></material>
+          <temperature>310.0</temperature>
+        </visual>
+      </link>
+    </model>
+
+    <model name="boulder_4">
+      <static>true</static>
+      <pose>-65 -45 -14.9 0.1 0.2 0.8</pose>
+      <link name="link">
+        <collision name="collision"><geometry><sphere><radius>1.1</radius></sphere></geometry></collision>
+        <visual name="visual">
+          <geometry><sphere><radius>1.1</radius></sphere></geometry>
+          <material><ambient>0.30 0.28 0.25 1</ambient><diffuse>0.40 0.38 0.35 1</diffuse></material>
+          <temperature>310.0</temperature>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ========================================================= -->
+    <!-- ORE STOCKPILES (typo fixed: model:// not models://)        -->
+    <!-- ========================================================= -->
+    <include>
+      <uri>model://ore_stockpile</uri>
+      <name>ore_stockpile_1</name>
+      <pose>-80 20 -8 0 0 0.3</pose>
+    </include>
+    <include>
+      <uri>model://ore_stockpile</uri>
+      <name>ore_stockpile_2</name>
+      <pose>0 85 -8 0 0 1.1</pose>
+    </include>
+    <include>
+      <uri>model://ore_stockpile</uri>
+      <name>ore_stockpile_3</name>
+      <pose>0 -85 -8 0 0 2.0</pose>
+    </include>
+    <include>
+      <uri>model://ore_stockpile</uri>
+      <name>ore_stockpile_floor</name>
+      <pose>15 15 -32 0 0 0.5</pose>
+    </include>
+
+    <!-- ========================================================= -->
+    <!-- Your own dumper truck goes here (or spawn it separately   -->
+    <!-- from your launch file — see README).                      -->
+    <!-- Ground-level shelf is z=0; rim ranges roughly x,y in       -->
+    <!-- [-110,-90] union [90,110] on each axis. Ramp mouth is at   -->
+    <!-- (0, -100). A reasonable spawn pose on the shelf, facing    -->
+    <!-- the ramp: <pose>0 -100 0 0 0 1.5708</pose>                 -->
+    <!-- ========================================================= -->
+
+  </world>
+</sdf>
