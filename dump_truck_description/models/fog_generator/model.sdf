@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+    <model name="fog_generator">
+        <!-- Rotated -90 deg pitch so local X is World +Z -->
+        <pose>0 0 0 0 0 0</pose>
+        <static>true</static>
+        <link name="fog_link">
+            <particle_emitter name="emitter" type="box">
+                <emitting>true</emitting>
+                
+                <!-- [Local X (Height), Local Y (Width), Local Z (Length)] -->
+                <!-- 15m deep layer, covering 170m x 170m across the pit -->
+                <size>170 170 15</size>
+                
+                <!-- Large cloud puffs so they blend into an even carpet -->
+                <particle_size>18 18 8</particle_size>
+                <lifetime>35</lifetime>
+                
+                <!-- Very low velocity keeps fog resting in the pit floor -->
+                <min_velocity>0.01</min_velocity>
+                <max_velocity>0.05</max_velocity>
+                
+                <!-- Gentle expansion to merge overlapping clouds -->
+                <scale_rate>0.3</scale_rate>
+                <rate>25</rate>
+                
+                <material>
+                    <!-- Dusty brownish-gray tone typical for iron ore mines -->
+                    <diffuse>0.68 0.62 0.54 1.0</diffuse>
+                    <specular>0.05 0.05 0.05 1.0</specular>
+                    <pbr>
+                        <metal>
+                            <albedo_map>/home/hyper_engine/mineRakshak/src/dump_truck_description/models/fog_generator/materials/textures/fog.png</albedo_map>
+                        </metal>
+                    </pbr>
+                </material>
+                <color_range_image>/home/hyper_engine/mineRakshak/src/dump_truck_description/models/fog_generator/materials/textures/fogcolors.png</color_range_image>
+            </particle_emitter>
+        </link>
+    </model>
+</sdf>

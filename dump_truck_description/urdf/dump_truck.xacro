@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <robot name="dump_truck" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-<xacro:property name="scale_factor" value="6.0"/>
+<xacro:property name="scale_factor" value="5.0"/>
 <xacro:property name="s1" value="${scale_factor}"/>
 <xacro:property name="s3" value="${scale_factor * scale_factor * scale_factor}"/>
 <xacro:property name="s5" value="${scale_factor * scale_factor * scale_factor * scale_factor * scale_factor}"/>

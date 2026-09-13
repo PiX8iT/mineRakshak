@@ -12,58 +12,22 @@
     <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
     <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
     <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
-      <render_engine>ogre2</render_engine>
+    <render_engine>ogre2</render_engine>
     </plugin>
     <plugin filename="gz-sim-contact-system" name="gz::sim::systems::Contact"/>
 
-    <!-- <gui fullscreen="0">
-      <plugin filename="MinimalScene" name="3D View">
-        <gz-gui>
-          <title>3D View</title>
-          <property type="bool" key="showTitleBar">false</property>
-          <property type="string" key="state">docked</property>
-        </gz-gui>
-        <engine>ogre2</engine>
-        <scene>scene</scene>
-        <ambient_light>0.5 0.5 0.5</ambient_light>
-        <background_color>0.7 0.7 0.7</background_color>
-      </plugin>
-      <plugin filename="GzSceneManager" name="Scene Manager">
-        <gz-gui>
-          <property key="resizable" type="bool">false</property>
-          <property key="width" type="double">5</property>
-          <property key="height" type="double">5</property>
-          <property key="state" type="string">floating</property>
-          <property key="showTitleBar" type="bool">false</property>
-        </gz-gui>
-      </plugin>
-    </gui> -->
-
-<scene>
-      <ambient>0.4 0.4 0.4 1.0</ambient>
-      <background>0.7 0.7 0.7 1.0</background>
-      <shadows>false</shadows>
-      <grid>false</grid>
-
-      <fog>
-        <color>0.75 0.75 0.75 1.0</color>
-        <type>exp2</type>
-        <density>0.08</density>
-      </fog>
-    </scene>
+    <plugin
+      filename="ignition-gazebo-particle-emitter2-system"
+      name="ignition::gazebo::systems::ParticleEmitter2">
+    </plugin>
 
     <light type="directional" name="sun">
       <pose>0 0 100 0 0 0</pose>
       <cast_shadows>true</cast_shadows>
-      <!-- Lower intensity diffuse prevents burning through fog shaders -->
       <diffuse>0.5 0.5 0.5 1.0</diffuse>
       <specular>0.1 0.1 0.1 1.0</specular>
       <direction>-0.4 0.3 -0.8</direction>
     </light>
-
-    <!-- ========================================================= -->
-    <!-- TERRACED PIT (hollow ring benches, south-side ramp cut)     -->
-    <!-- ========================================================= -->
 
     <model name="upper_bench_N">
       <static>true</static>
@@ -78,11 +42,11 @@
             <ambient>0.30 0.24 0.18 1</ambient>
             <diffuse>0.38 0.32 0.24 1</diffuse>
           </material>
-          <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
-            <temperature>310.0</temperature>
-          </plugin>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>308.0</temperature>
+      </plugin>
     </model>
 
     <model name="upper_bench_E">
@@ -98,11 +62,11 @@
             <ambient>0.30 0.24 0.18 1</ambient>
             <diffuse>0.38 0.32 0.24 1</diffuse>
           </material>
-          <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
-          <temperature>310.0</temperature>
-          </plugin>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>308.0</temperature>
+      </plugin>
     </model>
 
     <model name="upper_bench_W">
@@ -118,9 +82,11 @@
             <ambient>0.30 0.24 0.18 1</ambient>
             <diffuse>0.38 0.32 0.24 1</diffuse>
           </material>
-              <temperature>310.0</temperature>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>308.0</temperature>
+      </plugin>
     </model>
 
     <model name="upper_bench_S_a">
@@ -138,6 +104,9 @@
           </material>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>308.0</temperature>
+      </plugin>
     </model>
 
     <model name="upper_bench_S_b">
@@ -155,6 +124,9 @@
           </material>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>308.0</temperature>
+      </plugin>
     </model>
 
     <model name="upper_bench_ramp">
@@ -172,9 +144,10 @@
           </material>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>310.0</temperature>
+      </plugin>
     </model>
-
-    <!-- upper_bench: shelf top at z=0, drives south into ramp down to z=-8 -->
 
     <model name="mine_bench_1_N">
       <static>true</static>
@@ -191,6 +164,9 @@
           </material>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>305.0</temperature>
+      </plugin>
     </model>
 
     <model name="mine_bench_1_E">
@@ -208,6 +184,9 @@
           </material>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>305.0</temperature>
+      </plugin>
     </model>
 
     <model name="mine_bench_1_W">
@@ -225,6 +204,9 @@
           </material>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>305.0</temperature>
+      </plugin>
     </model>
 
     <model name="mine_bench_1_S_a">
@@ -242,6 +224,9 @@
           </material>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>305.0</temperature>
+      </plugin>
     </model>
 
     <model name="mine_bench_1_S_b">
@@ -259,6 +244,9 @@
           </material>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>305.0</temperature>
+      </plugin>
     </model>
 
     <model name="mine_bench_1_ramp">
@@ -276,9 +264,10 @@
           </material>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>307.0</temperature>
+      </plugin>
     </model>
-
-    <!-- mine_bench_1: shelf top at z=-8, drives south into ramp down to z=-16 -->
 
     <model name="mine_bench_2_N">
       <static>true</static>
@@ -295,6 +284,9 @@
           </material>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>303.0</temperature>
+      </plugin>
     </model>
 
     <model name="mine_bench_2_E">
@@ -312,6 +304,9 @@
           </material>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>303.0</temperature>
+      </plugin>
     </model>
 
     <model name="mine_bench_2_W">
@@ -329,6 +324,9 @@
           </material>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>303.0</temperature>
+      </plugin>
     </model>
 
     <model name="mine_bench_2_S_a">
@@ -346,6 +344,9 @@
           </material>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>303.0</temperature>
+      </plugin>
     </model>
 
     <model name="mine_bench_2_S_b">
@@ -363,6 +364,9 @@
           </material>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>303.0</temperature>
+      </plugin>
     </model>
 
     <model name="mine_bench_2_ramp">
@@ -380,9 +384,10 @@
           </material>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>305.0</temperature>
+      </plugin>
     </model>
-
-    <!-- mine_bench_2: shelf top at z=-16, drives south into ramp down to z=-24 -->
 
     <model name="mine_bench_3_N">
       <static>true</static>
@@ -399,6 +404,9 @@
           </material>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>298.0</temperature>
+      </plugin>
     </model>
 
     <model name="mine_bench_3_E">
@@ -416,6 +424,9 @@
           </material>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>298.0</temperature>
+      </plugin>
     </model>
 
     <model name="mine_bench_3_W">
@@ -433,6 +444,9 @@
           </material>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>298.0</temperature>
+      </plugin>
     </model>
 
     <model name="mine_bench_3_S_a">
@@ -450,6 +464,9 @@
           </material>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>298.0</temperature>
+      </plugin>
     </model>
 
     <model name="mine_bench_3_S_b">
@@ -467,6 +484,9 @@
           </material>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>298.0</temperature>
+      </plugin>
     </model>
 
     <model name="mine_bench_3_ramp">
@@ -484,13 +504,11 @@
           </material>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>300.0</temperature>
+      </plugin>
     </model>
 
-    <!-- mine_bench_3: shelf top at z=-24, drives south into ramp down to z=-32 -->
-
-    <!-- ========================================================= -->
-    <!-- PIT FLOOR (solid, fills the innermost hole)                -->
-    <!-- ========================================================= -->
     <model name="mine_floor">
       <static>true</static>
       <pose>0 0 -33 0 0 0</pose>
@@ -506,28 +524,35 @@
           </material>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>293.0</temperature>
+      </plugin>
     </model>
 
-    <!-- ========================================================= -->
-    <!-- HAUL ROADS (on the mine_bench_2 shelf, z=-16)              -->
-    <!-- ========================================================= -->
     <include>
       <uri>model://asphalt_plane</uri>
       <name>haul_road_1</name>
       <pose>55 0 -16 0 0 0</pose>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>328.0</temperature>
+      </plugin>
     </include>
     <include>
       <uri>model://asphalt_plane</uri>
       <name>haul_road_2</name>
       <pose>-55 0 -16 0 0 0</pose>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>328.0</temperature>
+      </plugin>
     </include>
     <include>
       <uri>model://asphalt_plane</uri>
       <name>haul_road_3</name>
       <pose>0 55 -16 0 0 1.5708</pose>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>328.0</temperature>
+      </plugin>
     </include>
-
-    <!-- BOULDERS: z = shelf_elevation + radius, so they rest ON the shelf -->
 
     <model name="boulder_1">
       <static>true</static>
@@ -537,9 +562,11 @@
         <visual name="visual">
           <geometry><sphere><radius>1.2</radius></sphere></geometry>
           <material><ambient>0.30 0.28 0.25 1</ambient><diffuse>0.40 0.38 0.35 1</diffuse></material>
-          <temperature>310.0</temperature>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>315.0</temperature>
+      </plugin>
     </model>
 
     <model name="boulder_2">
@@ -550,9 +577,11 @@
         <visual name="visual">
           <geometry><sphere><radius>1.5</radius></sphere></geometry>
           <material><ambient>0.30 0.28 0.25 1</ambient><diffuse>0.40 0.38 0.35 1</diffuse></material>
-            <temperature>310.0</temperature>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>300.0</temperature>
+      </plugin>
     </model>
 
     <model name="boulder_3">
@@ -563,9 +592,11 @@
         <visual name="visual">
           <geometry><sphere><radius>0.9</radius></sphere></geometry>
           <material><ambient>0.30 0.28 0.25 1</ambient><diffuse>0.40 0.38 0.35 1</diffuse></material>
-          <temperature>310.0</temperature>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>325.0</temperature>
+      </plugin>
     </model>
 
     <model name="boulder_4">
@@ -576,43 +607,304 @@
         <visual name="visual">
           <geometry><sphere><radius>1.1</radius></sphere></geometry>
           <material><ambient>0.30 0.28 0.25 1</ambient><diffuse>0.40 0.38 0.35 1</diffuse></material>
-          <temperature>310.0</temperature>
         </visual>
       </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>292.0</temperature>
+      </plugin>
     </model>
 
-    <!-- ========================================================= -->
-    <!-- ORE STOCKPILES (typo fixed: model:// not models://)        -->
-    <!-- ========================================================= -->
     <include>
       <uri>model://ore_stockpile</uri>
       <name>ore_stockpile_1</name>
       <pose>-80 20 -8 0 0 0.3</pose>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>302.0</temperature>
+      </plugin>
     </include>
     <include>
       <uri>model://ore_stockpile</uri>
       <name>ore_stockpile_2</name>
       <pose>0 85 -8 0 0 1.1</pose>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>298.0</temperature>
+      </plugin>
     </include>
     <include>
       <uri>model://ore_stockpile</uri>
       <name>ore_stockpile_3</name>
       <pose>0 -85 -8 0 0 2.0</pose>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>310.0</temperature>
+      </plugin>
     </include>
     <include>
       <uri>model://ore_stockpile</uri>
       <name>ore_stockpile_floor</name>
       <pose>15 15 -32 0 0 0.5</pose>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>295.0</temperature>
+      </plugin>
     </include>
 
-    <!-- ========================================================= -->
-    <!-- Your own dumper truck goes here (or spawn it separately   -->
-    <!-- from your launch file — see README).                      -->
-    <!-- Ground-level shelf is z=0; rim ranges roughly x,y in       -->
-    <!-- [-110,-90] union [90,110] on each axis. Ramp mouth is at   -->
-    <!-- (0, -100). A reasonable spawn pose on the shelf, facing    -->
-    <!-- the ramp: <pose>0 -100 0 0 0 1.5708</pose>                 -->
-    <!-- ========================================================= -->
 
+    <!-- ========================================================= -->
+    <!-- parked_truck_cold: static prop, no sensors/joints — thermal target    -->
+    <!-- ========================================================= -->
+    <model name="parked_truck_cold">
+      <static>true</static>
+      <pose>-100 60 0 0 0 1.5708</pose>
+      <link name="link">
+        <collision name="chassis_collision">
+          <pose>0 0 1.55 0 0 0</pose>
+          <geometry><box><size>5.2 2.6 1.3</size></box></geometry>
+        </collision>
+        <visual name="chassis_visual">
+          <pose>0 0 1.55 0 0 0</pose>
+          <geometry><box><size>5.2 2.6 1.3</size></box></geometry>
+          <material>
+            <ambient>0.55 0.55 0.58 1</ambient>
+            <diffuse>0.60 0.60 0.61 1</diffuse>
+          </material>
+        </visual>
+
+        <collision name="cab_collision">
+          <pose>1.6 0 2.65 0 0 0</pose>
+          <geometry><box><size>1.4 2.2 0.9</size></box></geometry>
+        </collision>
+        <visual name="cab_visual">
+          <pose>1.6 0 2.65 0 0 0</pose>
+          <geometry><box><size>1.4 2.2 0.9</size></box></geometry>
+          <material>
+            <ambient>0.60 0.65 0.63 1</ambient>
+            <diffuse>0.65 0.70 0.66 1</diffuse>
+          </material>
+        </visual>
+
+        <collision name="fl_wheel_collision">
+          <pose>1.8 1.55 0.55 -1.5708 0 0</pose>
+          <geometry><cylinder><radius>0.55</radius><length>0.4</length></cylinder></geometry>
+        </collision>
+        <visual name="fl_wheel_visual">
+          <pose>1.8 1.55 0.55 -1.5708 0 0</pose>
+          <geometry><cylinder><radius>0.55</radius><length>0.4</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.08 0.08 0.08 1</diffuse></material>
+        </visual>
+
+        <collision name="fr_wheel_collision">
+          <pose>1.8 -1.55 0.55 -1.5708 0 0</pose>
+          <geometry><cylinder><radius>0.55</radius><length>0.4</length></cylinder></geometry>
+        </collision>
+        <visual name="fr_wheel_visual">
+          <pose>1.8 -1.55 0.55 -1.5708 0 0</pose>
+          <geometry><cylinder><radius>0.55</radius><length>0.4</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.08 0.08 0.08 1</diffuse></material>
+        </visual>
+
+        <collision name="rl_wheel_collision">
+          <pose>-1.8 1.55 0.55 -1.5708 0 0</pose>
+          <geometry><cylinder><radius>0.55</radius><length>0.4</length></cylinder></geometry>
+        </collision>
+        <visual name="rl_wheel_visual">
+          <pose>-1.8 1.55 0.55 -1.5708 0 0</pose>
+          <geometry><cylinder><radius>0.55</radius><length>0.4</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.08 0.08 0.08 1</diffuse></material>
+        </visual>
+
+        <collision name="rr_wheel_collision">
+          <pose>-1.8 -1.55 0.55 -1.5708 0 0</pose>
+          <geometry><cylinder><radius>0.55</radius><length>0.4</length></cylinder></geometry>
+        </collision>
+        <visual name="rr_wheel_visual">
+          <pose>-1.8 -1.55 0.55 -1.5708 0 0</pose>
+          <geometry><cylinder><radius>0.55</radius><length>0.4</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.08 0.08 0.08 1</diffuse></material>
+        </visual>
+      </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>295.0</temperature>
+      </plugin>
+    </model>
+
+    <!-- ========================================================= -->
+    <!-- parked_truck_idle: static prop, no sensors/joints — thermal target    -->
+    <!-- ========================================================= -->
+    <model name="parked_truck_idle">
+      <static>true</static>
+      <pose>60 100 0 0 0 0.0</pose>
+      <link name="link">
+        <collision name="chassis_collision">
+          <pose>0 0 1.55 0 0 0</pose>
+          <geometry><box><size>5.2 2.6 1.3</size></box></geometry>
+        </collision>
+        <visual name="chassis_visual">
+          <pose>0 0 1.55 0 0 0</pose>
+          <geometry><box><size>5.2 2.6 1.3</size></box></geometry>
+          <material>
+            <ambient>0.85 0.55 0.05 1</ambient>
+            <diffuse>0.90 0.60 0.08 1</diffuse>
+          </material>
+        </visual>
+
+        <collision name="cab_collision">
+          <pose>1.6 0 2.65 0 0 0</pose>
+          <geometry><box><size>1.4 2.2 0.9</size></box></geometry>
+        </collision>
+        <visual name="cab_visual">
+          <pose>1.6 0 2.65 0 0 0</pose>
+          <geometry><box><size>1.4 2.2 0.9</size></box></geometry>
+          <material>
+            <ambient>0.90 0.65 0.10 1</ambient>
+            <diffuse>0.95 0.70 0.13 1</diffuse>
+          </material>
+        </visual>
+
+        <collision name="fl_wheel_collision">
+          <pose>1.8 1.55 0.55 -1.5708 0 0</pose>
+          <geometry><cylinder><radius>0.55</radius><length>0.4</length></cylinder></geometry>
+        </collision>
+        <visual name="fl_wheel_visual">
+          <pose>1.8 1.55 0.55 -1.5708 0 0</pose>
+          <geometry><cylinder><radius>0.55</radius><length>0.4</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.08 0.08 0.08 1</diffuse></material>
+        </visual>
+
+        <collision name="fr_wheel_collision">
+          <pose>1.8 -1.55 0.55 -1.5708 0 0</pose>
+          <geometry><cylinder><radius>0.55</radius><length>0.4</length></cylinder></geometry>
+        </collision>
+        <visual name="fr_wheel_visual">
+          <pose>1.8 -1.55 0.55 -1.5708 0 0</pose>
+          <geometry><cylinder><radius>0.55</radius><length>0.4</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.08 0.08 0.08 1</diffuse></material>
+        </visual>
+
+        <collision name="rl_wheel_collision">
+          <pose>-1.8 1.55 0.55 -1.5708 0 0</pose>
+          <geometry><cylinder><radius>0.55</radius><length>0.4</length></cylinder></geometry>
+        </collision>
+        <visual name="rl_wheel_visual">
+          <pose>-1.8 1.55 0.55 -1.5708 0 0</pose>
+          <geometry><cylinder><radius>0.55</radius><length>0.4</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.08 0.08 0.08 1</diffuse></material>
+        </visual>
+
+        <collision name="rr_wheel_collision">
+          <pose>-1.8 -1.55 0.55 -1.5708 0 0</pose>
+          <geometry><cylinder><radius>0.55</radius><length>0.4</length></cylinder></geometry>
+        </collision>
+        <visual name="rr_wheel_visual">
+          <pose>-1.8 -1.55 0.55 -1.5708 0 0</pose>
+          <geometry><cylinder><radius>0.55</radius><length>0.4</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.08 0.08 0.08 1</diffuse></material>
+        </visual>
+      </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>320.0</temperature>
+      </plugin>
+    </model>
+
+    <model name="parked_truck_hot">
+      <static>true</static>
+      <pose>30 60 -16 0 0 0.0</pose>
+      <link name="link">
+        <collision name="chassis_collision">
+          <pose>0 0 1.55 0 0 0</pose>
+          <geometry><box><size>5.2 2.6 1.3</size></box></geometry>
+        </collision>
+        <visual name="chassis_visual">
+          <pose>0 0 1.55 0 0 0</pose>
+          <geometry><box><size>5.2 2.6 1.3</size></box></geometry>
+          <material>
+            <ambient>0.75 0.15 0.10 1</ambient>
+            <diffuse>0.80 0.20 0.13 1</diffuse>
+          </material>
+        </visual>
+
+        <collision name="cab_collision">
+          <pose>1.6 0 2.65 0 0 0</pose>
+          <geometry><box><size>1.4 2.2 0.9</size></box></geometry>
+        </collision>
+        <visual name="cab_visual">
+          <pose>1.6 0 2.65 0 0 0</pose>
+          <geometry><box><size>1.4 2.2 0.9</size></box></geometry>
+          <material>
+            <ambient>0.80 0.25 0.15 1</ambient>
+            <diffuse>0.85 0.30 0.18 1</diffuse>
+          </material>
+        </visual>
+
+        <collision name="fl_wheel_collision">
+          <pose>1.8 1.55 0.55 -1.5708 0 0</pose>
+          <geometry><cylinder><radius>0.55</radius><length>0.4</length></cylinder></geometry>
+        </collision>
+        <visual name="fl_wheel_visual">
+          <pose>1.8 1.55 0.55 -1.5708 0 0</pose>
+          <geometry><cylinder><radius>0.55</radius><length>0.4</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.08 0.08 0.08 1</diffuse></material>
+        </visual>
+
+        <collision name="fr_wheel_collision">
+          <pose>1.8 -1.55 0.55 -1.5708 0 0</pose>
+          <geometry><cylinder><radius>0.55</radius><length>0.4</length></cylinder></geometry>
+        </collision>
+        <visual name="fr_wheel_visual">
+          <pose>1.8 -1.55 0.55 -1.5708 0 0</pose>
+          <geometry><cylinder><radius>0.55</radius><length>0.4</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.08 0.08 0.08 1</diffuse></material>
+        </visual>
+
+        <collision name="rl_wheel_collision">
+          <pose>-1.8 1.55 0.55 -1.5708 0 0</pose>
+          <geometry><cylinder><radius>0.55</radius><length>0.4</length></cylinder></geometry>
+        </collision>
+        <visual name="rl_wheel_visual">
+          <pose>-1.8 1.55 0.55 -1.5708 0 0</pose>
+          <geometry><cylinder><radius>0.55</radius><length>0.4</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.08 0.08 0.08 1</diffuse></material>
+        </visual>
+
+        <collision name="rr_wheel_collision">
+          <pose>-1.8 -1.55 0.55 -1.5708 0 0</pose>
+          <geometry><cylinder><radius>0.55</radius><length>0.4</length></cylinder></geometry>
+        </collision>
+        <visual name="rr_wheel_visual">
+          <pose>-1.8 -1.55 0.55 -1.5708 0 0</pose>
+          <geometry><cylinder><radius>0.55</radius><length>0.4</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.08 0.08 0.08 1</diffuse></material>
+        </visual>
+      </link>
+      <plugin filename="ignition-gazebo-thermal-system" name="gz::sim::systems::Thermal">
+        <temperature>345.0</temperature>
+      </plugin>
+    </model>
+    <include>
+      <uri>model://fog_generator</uri>
+      <name>mine_fog</name>
+      <pose>0 0 -20 0 1.5707 0</pose>
+    </include>
+
+    <!-- <model name="pit_fog_layer">
+          <static>true</static>
+          <pose>0 0 -25 0 0 0</pose>
+          <link name="fog_link">
+            <particle_emitter name="fog_particles" type="box">
+              <emitting>true</emitting>
+              <size>180 180 15</size>
+              <particle_size>25 25 15</particle_size>
+              <lifetime>15</lifetime>
+              <min_velocity>0.1</min_velocity>
+              <max_velocity>0.3</max_velocity>
+              <scale_rate>1.5</scale_rate>
+              <rate>40</rate>
+              <color_start>0.70 0.65 0.58 0.45</color_start>
+              <color_end>0.70 0.65 0.58 0.0</color_end>
+            </particle_emitter>
+          </link>
+          <plugin
+            filename="ignition-gazebo-particle-emitter-system"
+            name="gz::sim::systems::ParticleEmitter">
+          </plugin>
+        </model> -->
   </world>
 </sdf>

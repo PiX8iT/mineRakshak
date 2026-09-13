@@ -42,10 +42,10 @@ def generate_launch_description():
                 "-topic", "/robot_description",
                 "-name", "dump_truck",
                 "-allow_renaming", "false",
-                "-x", "0.0",
+                "-x", "70.0",
                 "-y", "0.0",
-                "-z", "0.1",
-                "-Y", "-1.570795"
+                "-z", "-1.5",
+                "-Y", "1.570795"
             ],
             output='screen'
         )]
